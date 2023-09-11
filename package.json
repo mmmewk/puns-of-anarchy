@@ -12,9 +12,11 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "antd": "^5.8.6",
+    "aws-cdk": "^2.95.1",
     "bgio-postgres": "^1.0.15",
     "boardgame.io": "^0.50.2",
     "esm": "^3.2.25",
+    "global": "^4.4.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
@@ -32,7 +34,10 @@
     "eject": "react-scripts eject",
     "build:server": "tsc -p tsconfig.server.json",
     "start:server": "node -r esm build/server/server.js",
-    "serve": "yarn build:server && yarn start:server"
+    "serve": "yarn build:server && yarn start:server",
+    "predeploy:frontend": "yarn build",
+    "deploy:frontend": "aws s3 sync ./build s3://www.puns-of-anarchy.mekoppe.com --delete",
+    "postdeploy:frontend": "aws cloudfront create-invalidation --distribution-id E2GUBK4J73FC7L --paths '/*'"
   },
   "eslintConfig": {
     "extends": [
@@ -55,7 +60,6 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "dotenv": "^16.3.1"
-
   },
   "engines": {
     "node": "20.x"

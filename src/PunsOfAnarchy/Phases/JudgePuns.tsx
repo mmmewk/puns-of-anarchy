@@ -3,11 +3,7 @@ import { useGameContext } from '../GameContext';
 import { Row, Col, Card } from 'antd';
 import { Pun } from '../types';
 
-interface Props {
-
-}
-
-const JudgePuns : React.FC<Props> = ({}) => {
+const JudgePuns : React.FC = () => {
   const { G, ctx, playerID, moves } = useGameContext();
   const submissions = G.submissions[ctx.currentPlayer];
 
@@ -17,7 +13,7 @@ const JudgePuns : React.FC<Props> = ({}) => {
     if (!playerActive) return;
 
     moves.pick(pun);
-  }, [playerActive])
+  }, [playerActive, moves])
 
   return (
     <div>
