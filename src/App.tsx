@@ -6,7 +6,7 @@ import { Lobby } from 'boardgame.io/react';
 import PunsOfAnarchyGame from './PunsOfAnarchy/Game';
 import PunsOfAnarchyBoard from './PunsOfAnarchy/Board';
 
-const server = `https://yourapplication.herokuapp.com`;
+const server = 'https://puns-of-anarchy-e392cdcca847.herokuapp.com/';
 const importedGames = [{ game: PunsOfAnarchyGame, board: PunsOfAnarchyBoard }];
 
 const App : React.FC = () => {

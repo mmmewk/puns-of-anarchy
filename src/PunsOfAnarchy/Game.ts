@@ -7,6 +7,8 @@ import { ActivePlayers, INVALID_MOVE } from "boardgame.io/core";
 
 const PunsOfAnarchyGame : Game<GameState> = {
     name: 'PunsOfAnarchy',
+    minPlayers: 2,
+    maxPlayers: 8,
     setup: ({ ctx }) => {
       return {
         categories: { deck: shuffle(categories), discard: [] },
