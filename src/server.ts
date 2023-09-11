@@ -6,4 +6,6 @@ const server = Server({
   origins: [Origins.LOCALHOST],
 });
 
-server.run(8000);
+const port = Number(process.env.PORT) || 8000;
+
+server.run(port);
