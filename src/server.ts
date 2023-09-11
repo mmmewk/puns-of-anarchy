@@ -14,7 +14,7 @@ const db = new PostgresStore(process.env.DATABASE_URL!, {
 
 const server = Server({
   games: [PunsOfAnarchy],
-  origins: [Origins.LOCALHOST],
+  origins: [Origins.LOCALHOST, 'https://puns-of-anarchy.mekoppe.com'],
   db
 });
 
