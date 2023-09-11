@@ -12,6 +12,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "antd": "^5.8.6",
+    "bgio-postgres": "^1.0.15",
     "boardgame.io": "^0.50.2",
     "esm": "^3.2.25",
     "lodash": "^4.17.21",
