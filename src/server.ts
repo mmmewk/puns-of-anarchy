@@ -12,9 +12,13 @@ const db = new PostgresStore(process.env.DATABASE_URL!, {
   }
 });
 
+const origin = process.env.NODE_ENV === 'development' ?
+  Origins.LOCALHOST :
+  'https://puns-of-anarchy.mekoppe.com';
+
 const server = Server({
   games: [PunsOfAnarchy],
-  origins: [Origins.LOCALHOST, 'https://puns-of-anarchy.mekoppe.com'],
+  origins: [origin],
   db
 });
 
