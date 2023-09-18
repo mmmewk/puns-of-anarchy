@@ -1,9 +1,11 @@
 import { createContext, useContext } from "react";
 import { Props } from "./Board";
+import { FilteredMetadata } from 'boardgame.io';
+
 
 interface GameContextType extends Props {
     hand: string[],
-    players: string[],
+    players: FilteredMetadata,
 }
 
 export const GameContext = createContext<GameContextType>({

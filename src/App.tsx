@@ -1,22 +1,40 @@
 import './App.css';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, Layout } from 'antd';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { Lobby } from 'boardgame.io/react';
-import PunsOfAnarchyGame from './PunsOfAnarchy/Game';
-import PunsOfAnarchyBoard from './PunsOfAnarchy/Board';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './Components/Home';
+import NewGame from './Components/NewGame';
+import JoinGame from './Components/JoinGame';
+import MatchLobby from './Components/MatchLobby';
+import Match from './Components/Match';
+import { QueryClientProvider, QueryClient } from 'react-query';
 
-const server = process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'https://puns-of-anarchy-e392cdcca847.herokuapp.com/';
-const importedGames = [{ game: PunsOfAnarchyGame, board: PunsOfAnarchyBoard }];
+const queryClient = new QueryClient();
+
+const { Content } = Layout;
 
 const App : React.FC = () => {
   return (
-    <ConfigProvider theme={{ token: { colorPrimary: '#00b96b' } }}>
-      <DndProvider backend={HTML5Backend}>
-        <h1>Lobby</h1>
-        <Lobby gameServer={server} lobbyServer={server} gameComponents={importedGames} />
-      </DndProvider>
-    </ConfigProvider>
+    <QueryClientProvider client={queryClient}>
+      <ConfigProvider theme={{ token: { colorPrimary: '#00b96b' } }}>
+        <DndProvider backend={HTML5Backend}>
+          <Layout>
+            <Content style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+              <BrowserRouter>
+                <Routes>
+                  <Route path='/' element={<Home />} />
+                  <Route path='/new' element={<NewGame />} />
+                  <Route path='/join' element={<JoinGame />} />
+                  <Route path='/matches/:matchId/lobby' element={<MatchLobby />} />
+                  <Route path='/matches/:matchId/play' element={<Match />} />
+                </Routes>
+              </BrowserRouter>
+            </Content>
+          </Layout>
+        </DndProvider>
+      </ConfigProvider>
+    </QueryClientProvider>
   )
 }
 

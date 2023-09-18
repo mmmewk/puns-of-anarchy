@@ -7,6 +7,7 @@ import { useGameContext } from '../GameContext';
 interface Props {
     category: string;
     owner: PlayerID;
+    ownerName?: string;
 }
 
 export type CategoryDropResult = {
@@ -14,7 +15,7 @@ export type CategoryDropResult = {
     owner: PlayerID;
 }
 
-const CategoryCard : React.FC<Props> = ({ category, owner }) => {
+const CategoryCard : React.FC<Props> = ({ category, owner, ownerName }) => {
     const { playerID, G } = useGameContext();
     const submissions = G.submissions[owner];
 
@@ -31,8 +32,9 @@ const CategoryCard : React.FC<Props> = ({ category, owner }) => {
     if (canDrop && (!isOver || owner === playerID)) {
         style.opacity = 0.3;
     }
-
-    const header = owner === playerID ? 'Your Category' : `Player ${owner}'s Category`;
+    
+    const name = ownerName || `Player ${playerID}`;
+    const header = owner === playerID ? 'Your Category' : `${name}'s Category`;
 
     return (
         <Card

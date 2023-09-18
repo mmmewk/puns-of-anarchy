@@ -4,10 +4,13 @@ import { Row, Col, Card } from 'antd';
 import { Pun } from '../types';
 
 const JudgePuns : React.FC = () => {
-  const { G, ctx, playerID, moves } = useGameContext();
+  const { G, ctx, playerID, moves, players } = useGameContext();
   const submissions = G.submissions[ctx.currentPlayer];
 
   const playerActive = playerID === ctx.currentPlayer;
+
+  let currentPlayerName = players.find((player) => player.id.toString() === ctx.currentPlayer)?.name;
+  currentPlayerName ||= `Player ${ctx.currentPlayer}`;
 
   const pickPun = useCallback((pun: Pun) => {
     if (!playerActive) return;
@@ -17,7 +20,7 @@ const JudgePuns : React.FC = () => {
 
   return (
     <div>
-      <h1>Player {ctx.currentPlayer}, pick your favorite pun!</h1>
+      <h1>{currentPlayerName}, pick your favorite pun!</h1>
       <Row gutter={16}>
         {submissions.map((pun) => {
           return (

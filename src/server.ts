@@ -22,7 +22,6 @@ const server = Server({
   db
 });
 
-
 const port = Number(process.env.PORT) || 8000;
 
 server.run(port);

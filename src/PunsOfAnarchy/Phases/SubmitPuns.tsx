@@ -11,13 +11,13 @@ const SubmitPuns : React.FC = () => {
     <div>
       <h1>Submit Puns</h1>
       <Row gutter={16}>
-          {players.map((id) => {
-            const category = G.playerCategories[id];
+          {players.map((player) => {
+            const category = G.playerCategories[player.id.toString()];
             if (!category) return null;
 
             return (
-                <Col span={6} key={id}>
-                  <CategoryCard category={category} owner={id} />
+                <Col span={6} key={player.id}>
+                  <CategoryCard category={category} owner={player.id.toString()} ownerName={player.name} />
                 </Col>
             );
           })}

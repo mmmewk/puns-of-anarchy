@@ -9,9 +9,11 @@ import { GameContext } from './GameContext';
 export interface Props extends BoardProps<GameState> {}
 
 const PunsOfAnarchyBoard : React.FC<Props> = (props) => {
-  const { G, playerID, ctx } = props;
+  const { G, playerID, ctx, matchData } = props;
+
+  console.log(matchData)
+
   const hand = playerID ? G.playerHands[playerID] : [];
-  const players = Object.keys(G.playerCategories);
   const winningPuns = playerID ? G.winningPuns[playerID] : [];
 
   if (!playerID) return null;
@@ -28,7 +30,7 @@ const PunsOfAnarchyBoard : React.FC<Props> = (props) => {
   }
 
   return (
-    <GameContext.Provider value={{ ...props, hand, players }}>
+    <GameContext.Provider value={{ ...props, hand, players: matchData || [] }}>
       <Layout>
         <Layout.Content style={{ padding: 50 }}>
           {renderContent()}
