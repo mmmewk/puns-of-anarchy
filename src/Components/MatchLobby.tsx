@@ -45,7 +45,7 @@ const MatchLobby : React.FC = () => {
             if (unsubscribe) unsubscribe();
             setSubscribed(false);
         };
-    }, [matchId, playerID, playerCredentials]);
+    }, [matchId, playerID, playerCredentials, navigate, refetch]);
 
     useEffect(() => {
         if (subscribed) serverClient.sendChatMessage({ joined: true });
